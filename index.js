@@ -1,5 +1,19 @@
 document.getElementById("reveal-answer-btn").addEventListener("click", checkAnswer);
 document.getElementById("show-answer-btn").addEventListener("click", showAnswer);
+
+// Enter key for login
+document.getElementById("username-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    document.getElementById("login-btn").click();
+  }
+});
+
+// Enter key for guess
+document.getElementById("user-input").addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    document.getElementById("reveal-answer-btn").click();
+  }
+});
 let currentPokemonName = "";
 let currentImageUrl = "";
 let username = "";
