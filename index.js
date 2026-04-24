@@ -2,6 +2,46 @@ document.getElementById("reveal-answer-btn").addEventListener("click", checkAnsw
 document.getElementById("show-answer-btn").addEventListener("click", showAnswer);
 let currentPokemonName = "";
 let currentImageUrl = "";
+let username = "";
+let pokedex = [];
+
+function savePokedex() {
+  localStorage.setItem("pokedex_" + username, JSON.stringify(pokedex));
+}
+
+function loadPokedex() {
+  const stored = localStorage.getItem("pokedex_" + username);
+  if (stored) {
+    pokedex = JSON.parse(stored);
+    pokedex.forEach(poke => {
+      const li = document.createElement("li");
+      const img = document.createElement("img");
+      img.src = poke.imageUrl;
+      img.alt = poke.name;
+      img.style.width = "50px";
+      img.style.marginRight = "10px";
+      li.appendChild(img);
+      const span = document.createElement("span");
+      span.textContent = poke.name;
+      li.appendChild(span);
+      document.getElementById("pokedex-list").appendChild(li);
+    });
+  }
+}
+
+// Hide main initially
+document.querySelector("main").style.display = "none";
+
+// Login functionality
+document.getElementById("login-btn").addEventListener("click", () => {
+  username = document.getElementById("username-input").value.trim();
+  if (username) {
+    document.getElementById("login-container").style.display = "none";
+    document.querySelector("main").style.display = "block";
+    loadPokedex();
+    getPokemon();
+  }
+});
 
 async function getPokemon() {
   try {
@@ -22,7 +62,6 @@ async function getPokemon() {
   }
 }
 
-getPokemon();
 function checkAnswer() {
   const userInput = document.getElementById("user-input");
   const guess = userInput.value.toLowerCase().trim();
@@ -31,6 +70,8 @@ function checkAnswer() {
   if (guess === currentPokemonName) {
     feedback.textContent = "Correct!";
     img.style.filter = "brightness(1)";
+    pokedex.push({name: currentPokemonName, imageUrl: currentImageUrl});
+    savePokedex();
     const li = document.createElement("li");
     const pokeImg = document.createElement("img");
     pokeImg.src = currentImageUrl;
