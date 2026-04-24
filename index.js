@@ -1,5 +1,7 @@
 document.getElementById("reveal-answer-btn").addEventListener("click", checkAnswer);
+document.getElementById("show-answer-btn").addEventListener("click", showAnswer);
 let currentPokemonName = "";
+let currentImageUrl = "";
 
 async function getPokemon() {
   try {
@@ -12,6 +14,7 @@ async function getPokemon() {
     currentPokemonName = data.name.toLowerCase(); // store correct name
 
     const imageUrl = data.sprites.other["official-artwork"].front_default;
+    currentImageUrl = imageUrl;
     img.src = imageUrl;
     img.style.filter = "brightness(0)";
   } catch (error) {
@@ -24,15 +27,40 @@ function checkAnswer() {
   const userInput = document.getElementById("user-input");
   const guess = userInput.value.toLowerCase().trim();
   const img = document.getElementById("pokemon-img");
+  const feedback = document.getElementById("feedback");
   if (guess === currentPokemonName) {
-    alert("Correct!");
+    feedback.textContent = "Correct!";
     img.style.filter = "brightness(1)";
     const li = document.createElement("li");
-    li.textContent = currentPokemonName;
+    const pokeImg = document.createElement("img");
+    pokeImg.src = currentImageUrl;
+    pokeImg.alt = currentPokemonName;
+    pokeImg.style.width = "50px";
+    pokeImg.style.marginRight = "10px";
+    li.appendChild(pokeImg);
+    const span = document.createElement("span");
+    span.textContent = currentPokemonName;
+    li.appendChild(span);
     document.getElementById("pokedex-list").appendChild(li);
     userInput.value = "";
-    setTimeout(getPokemon, 1500);
+    setTimeout(() => {
+      feedback.textContent = "";
+      getPokemon();
+    }, 1500);
   } else {
-    alert("Wrong! Try again.");
+    feedback.textContent = "Wrong! Try again.";
   }
+}
+function showAnswer() {
+  const img = document.getElementById("pokemon-img");
+  const feedback = document.getElementById("feedback");
+  const userInput = document.getElementById("user-input");
+  img.style.filter = "brightness(1)";
+  feedback.textContent = `The answer was: ${currentPokemonName}`;
+  userInput.value = "";
+
+  setTimeout(() => {
+    feedback.textContent = "";
+    getPokemon();
+  }, 2000);
 }
