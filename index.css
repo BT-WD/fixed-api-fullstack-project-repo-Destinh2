@@ -1,5 +1,5 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 20px;
   display: flex;
@@ -7,18 +7,73 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f0f0f0;
+  background: linear-gradient(135deg,#c76b6e, #9e282b);
+  color: black;
+  font-size: 18px;
 }
 
 #login-container {
-  text-align: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+#login-container h2 {
+  margin-top: 0;
+  color: black;
+  font-size: 24px;
+}
+
+#username-input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+#login-btn {
+  background: #f54248;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#login-btn:hover {
+  background: #74b9ff;
 }
 
 main {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   width: 100%;
   text-align: center;
+}
+
+.site-header {
+  margin-bottom: 20px;
+}
+
+.logo {
+  color: black;
+  margin: 0;
+  font-size: 32px;
+}
+
+.subtitle {
+  color: black;
+  font-size: 16px;
 }
 
 #pokemon-container {
@@ -28,24 +83,90 @@ main {
 #pokemon-img {
   max-width: 300px;
   height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 300px;
+  display: block;
+  margin: 0 auto;
+}
+
+div:has(button) {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  background: #00b894;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  font-size: 16px;
+}
+
+button:hover {
+  background: #00cec9;
+}
+
+#feedback {
+  margin: 10px 0;
+  font-weight: bold;
+  color: black;
+  min-height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sub-header {
+  color: black;
+  margin: 20px 0 10px;
+  font-size: 24px;
 }
 
 #pokedex-container {
-  text-align: left;
+  text-align: center;
   margin-top: 20px;
 }
 
 #pokedex-list {
   list-style: none;
   padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 #pokedex-list li {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
 }
 
 #pokedex-list img {
+  width: 40px;
+  height: 40px;
   margin-right: 10px;
+  border-radius: 50%;
 }
